@@ -3,6 +3,7 @@
 namespace kat;
 
 use Exception;
+use Snipworks\Smtp\Email;
 
 class ExchangeMailer extends AbstractKatMail implements KatMailInterface
 {
@@ -34,6 +35,7 @@ class ExchangeMailer extends AbstractKatMail implements KatMailInterface
      */
     public function send(): ?bool
     {
+        $this->mailClient = new Email( $this->smtpServer,  $this->smtpServerPort);
 
         $this->mailClient->addTo($this->emailReceiver, $this->emailReceiverName);
         $this->mailClient->setFrom($this->emailSender, $this->emailSenderName);

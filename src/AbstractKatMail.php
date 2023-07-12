@@ -115,8 +115,4 @@ class AbstractKatMail
         return $this;
     }
 
-    public function __construct($mailClient)
-    {
-        $this->mailClient = $mailClient;
-    }
 }

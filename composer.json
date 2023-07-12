@@ -1,0 +1,39 @@
+{
+    "name": "kat/katmail",
+    "description": "Sending mails",
+    "type": "project",
+    "config": {
+        "optimize-autoloader": true,
+        "prepend-autoloader": false,
+        "platform": {
+            "php": "7.4"
+        }
+    },
+    "require": {
+        "php": "^7.4",
+        "snipworks/php-smtp": "^2.0",
+        "mailjet/mailjet-apiv3-php": "^1.5"
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.19",
+        "pestphp/pest": "^1.21",
+        "rector/rector": "^0.13.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "kat\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "katlassi",
+            "email": "katlassi@coyote-group.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

@@ -11,8 +11,7 @@
     },
     "require": {
         "php": "^7.4",
-        "snipworks/php-smtp": "^2.0",
-        "mailjet/mailjet-apiv3-php": "^1.5"
+        "snipworks/php-smtp": "^2.0"
     },
     "minimum-stability": "stable",
     "require-dev": {

@@ -43,10 +43,10 @@ class ExchangeMailer extends AbstractKatMail implements KatMailInterface
         $this->mailClient->setHtmlMessage($this->mailBody);
 
         $isMailSent = $this->mailClient->send();
-        if (!$isMailSent) {
+        /*if (!$isMailSent) {
            //throw new Exception($this->mailClient->getLogs());
            throw new Exception('Email not sent');
-        }
+        }*/
         return $isMailSent;
     }
 

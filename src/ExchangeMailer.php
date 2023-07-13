@@ -45,9 +45,7 @@ class ExchangeMailer extends AbstractKatMail implements KatMailInterface
         $isMailSent = $this->mailClient->send();
 
         if (!$isMailSent) {
-           //throw new Exception($this->mailClient->getLogs());
-            print_r($this->mailClient->getLogs());
-            throw new Exception('Email not sent');
+            throw new Exception('Email not sent >> ' . print_r($this->mailClient->getLogs(), true));
         }
         return $isMailSent;
     }

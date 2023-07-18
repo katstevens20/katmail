@@ -11,6 +11,8 @@ class ExchangeTest extends TestCase
 {
 
 
+    private string $mailSender = 'email_sas_services_sender@coyote-group.com';
+    private string $mailSenderPassword = '?QsjpK@76yyhb5';
     private string $mailReceiver = 'katlassi_ext@coyote-group.com';
     private string $mailSubject = '*Testcase: Send an email';
     private string $mailContent = <<<END
@@ -45,6 +47,7 @@ END;
         $this->assertTrue($isSent);
     }
 */
+    /*
     public function testEmailSent()
     {
         $isSent = $this->exchangeMailer
@@ -59,8 +62,23 @@ END;
 
         $this->assertTrue($isSent);
     }
+*/
+    public function testEmailSentWithAuth()
+    {
+        $isSent = $this->exchangeMailer
+            ->setEmailSender($this->mailSender)
+            ->setEmailSenderPassword($this->mailSenderPassword)
+            ->setAppEnv('INT')
+            ->setEmailSender($this->mailReceiver)
+            ->setEmailSenderName('Coyote')
+            ->setEmailReceiver($this->mailReceiver)
+            ->setEmailReceiverName('MR ATLASSI')
+            ->setMailSubject($this->mailSubject)
+            ->setMailBody('<pre>' . $this->mailContent . '</pre>')
+            ->send();
 
-
+        $this->assertTrue($isSent);
+    }
     /**
      * @throws \Exception
 

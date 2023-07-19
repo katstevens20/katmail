@@ -46,13 +46,15 @@ class ExchangeMailer extends AbstractKatMail implements KatMailInterface
      */
     public function send(): ?bool
     {
-        $this->mailClient = new Email( $this->smtpServer,  $this->smtpServerPort);
+        $this->mailClient = new Email($this->smtpServer, $this->smtpServerPort);
         $this->mailClient->setLogin($this->emailSender, $this->emailSenderPassword);
         $this->mailClient->addTo($this->emailReceiver, $this->emailReceiverName);
         $this->mailClient->setFrom($this->emailSender, $this->emailSenderName);
-        $this->mailClient->setSubject(($this->appEnv == ''?:'[' . $this->appEnv . '] ') . $this->mailSubject);
+        $this->mailClient->setSubject(($this->appEnv == '' ?: '[' . $this->appEnv . '] ') . $this->mailSubject);
         $this->mailClient->setHtmlMessage($this->mailBody);
-
+        foreach ($this->attachements as $attachement) {
+            $this->mailClient->addAttachment($attachement);
+        }
         $isMailSent = $this->mailClient->send();
 
         if (!$isMailSent) {

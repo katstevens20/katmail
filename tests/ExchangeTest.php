@@ -34,19 +34,19 @@ END;
             ->setSmtpServerPort(25);
 
     }
-/*
-    public function testEmailSentWithEmptyBody()
-    {
-        $isSent = $this->exchangeMailer
-            ->setEmailSender($this->mailReceiver)
-            ->setEmailReceiver($this->mailReceiver)
-            ->setMailSubject($this->mailSubject)
-            ->setMailBody('')
-            ->send();
+    /*
+        public function testEmailSentWithEmptyBody()
+        {
+            $isSent = $this->exchangeMailer
+                ->setEmailSender($this->mailReceiver)
+                ->setEmailReceiver($this->mailReceiver)
+                ->setMailSubject($this->mailSubject)
+                ->setMailBody('')
+                ->send();
 
-        $this->assertTrue($isSent);
-    }
-*/
+            $this->assertTrue($isSent);
+        }
+    */
     /*
     public function testEmailSent()
     {
@@ -62,7 +62,7 @@ END;
 
         $this->assertTrue($isSent);
     }
-*/
+
     public function testEmailSentWithAuth()
     {
         $isSent = $this->exchangeMailer
@@ -78,19 +78,23 @@ END;
             ->send();
 
         $this->assertTrue($isSent);
-    }
+    }*/
+
     /**
      * @throws \Exception
-
+     */
     public function testEmailSentWithFile()
     {
-        $isSent = $this->mailjetMailer
+        $isSent = $this->exchangeMailer
+            ->setEmailSender($this->mailSender)
+            ->setEmailSenderPassword($this->mailSenderPassword)
+            ->setAppEnv('INT')
             ->setEmailSender($this->mailReceiver)
-            ->setEmailReceiver($this->mailReceiver)
-            ->setMailSubject($this->mailSubject . " - With file!")
-            ->setMailBody($this->mailContent . " \nWith file!")
-            ->setAttachements(json_decode('[{"ContentType":"text/plain","Filename":"' . $this->downloadableFileName . '","Base64Content":"' . base64_encode(file_get_contents($this->fileNamePath)) . '"}]', true))
+            ->setEmailSenderName('Coyote')            ->setEmailReceiver($this->mailReceiver)
+            ->setMailSubject($this->mailSubject . " - With file !!")
+            ->setMailBody($this->mailContent . " \nWith file !!")
+            ->setAttachements([$this->fileNamePath])
             ->send();
         $this->assertTrue($isSent);
-    }*/
+    }
 }

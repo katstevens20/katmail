@@ -12,7 +12,7 @@ class AbstractKatMail
     protected $emailSenderName = "No name";
     protected $emailReceiver = "";
     protected $emailReceiverName = "No name";
-    protected $attachements = null;
+    protected $attachements = [];
     protected $appEnv = '';
 
     /**
